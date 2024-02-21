@@ -1,0 +1,119 @@
+Server [localhost]:
+Database [postgres]:
+Port [5432]:
+Username [postgres]:
+Password for user postgres:
+psql (14.2)
+WARNING: Console code page (850) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# \l
+                                                  List of databases
+        Name         |  Owner   | Encoding |        Collate         |         Ctype          |   Access privileges
+---------------------+----------+----------+------------------------+------------------------+-----------------------
+ bd_sistema_bancario | postgres | UTF8     | Portuguese_Brazil.1252 | Portuguese_Brazil.1252 |
+ postgres            | postgres | UTF8     | Portuguese_Brazil.1252 | Portuguese_Brazil.1252 |
+ template0           | postgres | UTF8     | Portuguese_Brazil.1252 | Portuguese_Brazil.1252 | =c/postgres          +
+                     |          |          |                        |                        | postgres=CTc/postgres
+ template1           | postgres | UTF8     | Portuguese_Brazil.1252 | Portuguese_Brazil.1252 | =c/postgres          +
+                     |          |          |                        |                        | postgres=CTc/postgres
+(4 rows)
+
+
+postgres=# \c bd_sistema_bancario
+You are now connected to database "bd_sistema_bancario" as user "postgres".
+bd_sistema_bancario=# \dt
+          List of relations
+ Schema |   Name   | Type  |  Owner
+--------+----------+-------+----------
+ public | clientes | table | postgres
+(1 row)
+
+
+bd_sistema_bancario=# create procedure cadastrar(nomeCliente varchar, contaCliente varchar)
+bd_sistema_bancario-# language psql
+bd_sistema_bancario-# as $$
+bd_sistema_bancario$# intert into clientes values (nomeCliente, contaCliente);
+bd_sistema_bancario$# $$;
+ERROR:  language "psql" does not exist
+bd_sistema_bancario=# create procedure cadastrar(nomeCliente varchar, contaCliente varchar)
+bd_sistema_bancario-# language sql
+bd_sistema_bancario-# as $$
+bd_sistema_bancario$# intert into clientes values (nomeCliente, contaCliente);
+bd_sistema_bancario$# $$;
+ERROR:  syntax error at or near "intert"
+LINE 4: intert into clientes values (nomeCliente, contaCliente);
+        ^
+bd_sistema_bancario=# create procedure cadastrar(nomeCliente varchar, contaCliente varchar)
+bd_sistema_bancario-# language psql
+bd_sistema_bancario-# insert into clientes values (nomeCliente, contaCliente);
+ERROR:  syntax error at or near "insert"
+LINE 3: insert into clientes values (nomeCliente, contaCliente);
+        ^
+bd_sistema_bancario=# drop table clientes.
+bd_sistema_bancario-# ;
+ERROR:  syntax error at or near ";"
+LINE 2: ;
+        ^
+bd_sistema_bancario=# drop table clientes;
+DROP TABLE
+bd_sistema_bancario=# create table cliente (nome_cliente varchar(20), cidade_cliente(20), endereco_cliente(100));
+ERROR:  syntax error at or near "("
+LINE 1: ... cliente (nome_cliente varchar(20), cidade_cliente(20), ende...
+                                                             ^
+bd_sistema_bancario=# create table cliente (nome_cliente varchar(20), cidade_cliente varchar(20), endereco_cliente  varchar(100));
+CREATE TABLE
+bd_sistema_bancario=# create table emprestimo (numero_emprestimo int, nome_agencia varchar(20), valor float);
+CREATE TABLE
+bd_sistema_bancario=# create table agencia (nome_agencia varchar(20), cidade_agencia varchar(20), depositos int);
+CREATE TABLE
+bd_sistema_bancario=# create table conta (numero_conta int, nome_agencia varchar(20), saldo float);
+CREATE TABLE
+bd_sistema_bancario=# create procedure cadastrar(nomeCliente varchar, contaCliente varchar)
+bd_sistema_bancario-# language sql
+bd_sistema_bancario-# as $$
+bd_sistema_bancario$# insert into cliente values (nomeCliente, contaCliente);
+bd_sistema_bancario$# $$
+bd_sistema_bancario-# ;
+CREATE PROCEDURE
+bd_sistema_bancario=# call cadastrar('Arley', 'Jacarei');
+CALL
+bd_sistema_bancario=# call cadastrar('Caique', 'Jacarei');
+CALL
+bd_sistema_bancario=# select * from cliente;
+ nome_cliente | cidade_cliente | endereco_cliente
+--------------+----------------+------------------
+ Arley        | Jacarei        |
+ Caique       | Jacarei        |
+(2 rows)
+
+
+bd_sistema_bancario=# create view as (select * from cliente;);
+ERROR:  syntax error at or near "as"
+LINE 1: create view as (select * from cliente;);
+                    ^
+bd_sistema_bancario=# create view from (select * from cliente;);
+ERROR:  syntax error at or near "from"
+LINE 1: create view from (select * from cliente;);
+                    ^
+bd_sistema_bancario=# create view ( as select * from cliente;);
+ERROR:  syntax error at or near "("
+LINE 1: create view ( as select * from cliente;);
+                    ^
+bd_sistema_bancario=# create view as select * from cliente;
+ERROR:  syntax error at or near "as"
+LINE 1: create view as select * from cliente;
+                    ^
+bd_sistema_bancario=# create view consultarCliente as select * from cliente;
+CREATE VIEW
+bd_sistema_bancario=# select * from consultarCliente;
+ nome_cliente | cidade_cliente | endereco_cliente
+--------------+----------------+------------------
+ Arley        | Jacarei        |
+ Caique       | Jacarei        |
+(2 rows)
+
+
+bd_sistema_bancario=#
