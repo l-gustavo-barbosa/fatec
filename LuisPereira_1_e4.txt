@@ -1,0 +1,6 @@
+3 + (-3) = 0 //A soma de números opostos é igual a zero.
+(3 + (-3)) * (-10) = 0 * (-10) //Multiplicar ambos os lados de uma equação por um número diferente de zero não altera a mesma.
+(-10) * 3 + (-3) * (-10) = 0 //Apliquei o princípio de distributividade para passar o (-10) para o outro lado da equação.
+(-10) * 3 + (-3) * (-10) + 10 = 0 + 10 //Somar o mesmo valor em ambos os lados da equação não altera a mesma.
+(-10) * 3 + (-3) * (-10) + 10 * 3 = 0 + 10 * 3 //Repliquei a lógica do primeiro passo.
+(-3) * (-10) = 30 //3 * 10 e 3 * (-10) resultam em números opostos (30 e -30), portanto se anulam, provando assim que (-3) * (-10) = 30.
