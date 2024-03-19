@@ -1,0 +1,32 @@
+{
+  "name": "aula3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ex1": "ts-node src/ex1.ts",
+    "ex2": "ts-node src/ex2.ts",
+    "ex3": "ts-node src/ex3.ts",
+    "ex4": "ts-node src/ex4.ts",
+    "ex5": "ts-node src/ex5.ts",
+    "ex6": "ts-node src/ex6.ts",
+    "ex7": "ts-node src/ex7.ts",
+    "ex8": "ts-node src/ex8.ts",
+    "ex9": "ts-node src/ex9.ts",
+    "ex10": "ts-node src/ex10.ts"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node-dev": "^2.0.0"
+  }
+}
