@@ -1,7 +1,7 @@
 // Desenvolva um programa recursivo para calcular o menor elemento presente em um array não ordenado
 //Incluir modelo/view
 
-    function menor_a(array: number[]): number{
+    export function menor_a(array: number[]): number{
         if(array.length == 1){
             return array[0]
         } else {
@@ -14,5 +14,3 @@
         }
     }
 
-let array: number[] = [5,-1,3];
-console.log(menor_a(array));
